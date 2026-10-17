@@ -1,6 +1,8 @@
 extends Control
 
-const LABEL_FORMAT := "Speed: x%.2f"
+const LABEL_FORMAT := "Speed: %d%%"
+const PLAY_TEX := preload("uid://bba84fl5jcafl") as CompressedTexture2D
+const PAUSE_TEX := preload("uid://d2k1lvtnkn7pj") as CompressedTexture2D
 
 var paused := false
 var previous_speed : float
@@ -28,7 +30,7 @@ func _process(_delta: float) -> void:
 
 func set_speed(speed:float) ->void:
 	var new_speed := 1.0 - speed
-	speed_label.text = LABEL_FORMAT % speed
+	speed_label.text = LABEL_FORMAT % int(speed*100.0)
 	speed_changed.emit(new_speed)
 	previous_speed = new_speed
 
@@ -42,6 +44,12 @@ func _on_drag_ended(_value_changed: bool) -> void:
 func _on_pause_button_pressed() -> void:
 	paused = !paused
 	pause_turmite.emit(paused)
+	
+	if paused:
+		pause_button.texture_normal = PLAY_TEX
+	else:
+		pause_button.texture_normal = PAUSE_TEX
+	
 
 func _on_reset_button_pressed() -> void:
 	reset_turmite.emit()

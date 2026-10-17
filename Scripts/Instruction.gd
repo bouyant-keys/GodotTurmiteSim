@@ -4,6 +4,8 @@ class_name Instruction extends Resource
 
 enum InstructionType {TM, ANT}
 
+var invalid_message : String
+
 @export var name : StringName
 @export var type : InstructionType
 @export var transitions : PackedStringArray
@@ -25,9 +27,11 @@ func get_color(state:int) ->Color:
 ## Check whether the instructions can be interpreted by the Turmite.
 func is_valid() ->bool:
 	if transitions.is_empty():
+		invalid_message = "No transitions written."
+		print(invalid_message)
 		return false
-	elif state_colors.is_empty():
-		return false
+	#elif state_colors.is_empty():
+		#return false
 	
 	if type == InstructionType.TM:
 		for t : String in transitions:
@@ -63,6 +67,10 @@ func validate_tm_trans(t:String) ->bool:
 
 ## Check whether the transition can be interpreted as an Ant transition.
 func validate_ant_trans(t:String) ->bool:
-	if t.length() != 1: return false
-	elif t not in ["L", "R", "l", "r"]: return false
+	if t.length() != 1: 
+		invalid_message = "Transition is empty."
+		return false
+	elif t not in ["L", "R", "l", "r"]: 
+		invalid_message = "Characters other than L and R used."
+		return false
 	return true

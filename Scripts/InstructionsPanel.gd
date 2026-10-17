@@ -1,16 +1,25 @@
 extends Control
 
-var validation_message := ""
+const FORMAT_LABEL := "Format: <L/R>,<L/R>,<L/R>,..."
 
-@onready var instructions_edit: TextEdit = %InstructionsEdit
+var current_instruction : Instruction
+
+@export var turmite : Turmite
+@export var gradient_tex: GradientTexture1D
+
+@onready var edit_box: TextEdit = %InstructionsEdit
 @onready var main_panel: Control = $MainPanel
 @onready var hidden_panel: Control = $HiddenPanel
+@onready var format_label: Label = %FormatLabel
+@onready var error_icon: TextureRect = %ErrorIcon
 
 signal instructions_changed(instruction:Instruction)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_on_show_pressed()
+	error_icon.hide()
+	edit_box.text = turmite.current_turmite_instructions.to_string()
+	_on_hide_pressed()
 
 
 func _on_show_pressed() ->void:
@@ -22,22 +31,37 @@ func _on_hide_pressed() ->void:
 	hidden_panel.show()
 
 func _on_instructions_set() -> void:
-	if validate_syntax(instructions_edit.text):
-		instructions_changed.emit(instructions_edit.text)
+	print("instructions set.")
+	# Assuming type is ant by default
+	var instruction = Instruction.new()
+	instruction.type = Instruction.InstructionType.ANT
+	instruction.transitions = edit_box.text.split(",")
+	
+	if !instruction.is_valid():
+		format_label.text = instruction.invalid_message
+		error_icon.show()
+		return
+	format_label.text = FORMAT_LABEL
+	error_icon.hide()
+	
+	instruction.state_colors.clear()
+	for i : int in instruction.transitions.size():
+		var temp := i / float(instruction.transitions.size()-1.0)
+		var color := gradient_tex.gradient.sample(temp)
+		print(temp, color)
+		instruction.state_colors.append(color)
+	print(instruction.transitions)
+	
+	current_instruction = instruction
 
 func _on_preset_changed(i:Instruction) ->void:
-	instructions_edit.text = i.to_string()
+	edit_box.text = i.to_string()
 	instructions_changed.emit(i)
 	_on_hide_pressed()
 
-
-func validate_syntax(text:String) ->bool:
-	if text.begins_with("0") or text.begins_with("1"):
-		print("TM format detected.")
-	elif text.begins_with("L") or text.begins_with("R"):
-		for c in text:
-			if c not in ["L", "R"]:
-				validation_message = "Propp form may only contain L or R characters."
-				return false
-		print("Propp format detected.")
-	return true
+func _on_run_pressed() -> void:
+	if !current_instruction: return
+	elif !current_instruction.is_valid(): return
+	
+	instructions_changed.emit(current_instruction)
+	_on_hide_pressed()

@@ -52,7 +52,8 @@ turmite = NodePath("../Turmite")
 [node name="PlaybackControls" parent="." unique_id=2032513786 instance=ExtResource("3_6bp64")]
 mouse_filter = 2
 
-[node name="InstructionsPanel" parent="." unique_id=233951351 instance=ExtResource("4_6bp64")]
+[node name="InstructionsPanel" parent="." unique_id=233951351 node_paths=PackedStringArray("turmite") instance=ExtResource("4_6bp64")]
+turmite = NodePath("../Turmite")
 
 [connection signal="status_changed" from="Turmite" to="StatusPanel" method="_on_status_changed"]
 [connection signal="steps_changed" from="Turmite" to="StatusPanel" method="_on_steps_changed"]

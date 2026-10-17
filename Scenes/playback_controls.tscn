@@ -66,7 +66,7 @@ script = ExtResource("1_6v1l1")
 [node name="SpeedLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=50891599]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Speed: x"
+text = "Speed: x%"
 
 [node name="Spacer2" type="Control" parent="PanelContainer/HBoxContainer" unique_id=1495569673]
 layout_mode = 2

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://y43ol2qpbnjx"]
+
+[ext_resource type="Script" uid="uid://lq8sgk5ifyxy" path="res://Scripts/PlaybackControls.gd" id="1_6v1l1"]
+[ext_resource type="Theme" uid="uid://dovs4fp3bam4w" path="res://ProjectTheme.tres" id="1_xay36"]
+[ext_resource type="Texture2D" uid="uid://3krtv4xtr42k" path="res://Textures/Reload.svg" id="2_8wsw6"]
+[ext_resource type="Texture2D" uid="uid://d2k1lvtnkn7pj" path="res://Textures/Pause.svg" id="3_xay36"]
+
+[node name="PlaybackControls" type="Control" unique_id=2032513786]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xay36")
+script = ExtResource("1_6v1l1")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=766112609]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 1.0
+anchor_right = 0.7
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=742461692]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Spacer" type="Control" parent="PanelContainer/HBoxContainer" unique_id=2129055739]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ResetButton" type="TextureButton" parent="PanelContainer/HBoxContainer" unique_id=1854716577]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+texture_normal = ExtResource("2_8wsw6")
+
+[node name="PauseButton" type="TextureButton" parent="PanelContainer/HBoxContainer" unique_id=229909589]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 1
+texture_normal = ExtResource("3_xay36")
+
+[node name="SpeedSlider" type="HSlider" parent="PanelContainer/HBoxContainer" unique_id=2087891065]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 1
+min_value = 0.5
+max_value = 1.0
+step = 0.05
+value = 0.75
+scrollable = false
+tick_count = 5
+ticks_position = 3
+script = ExtResource("1_6v1l1")
+
+[node name="SpeedLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=50891599]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Speed: x"
+
+[node name="Spacer2" type="Control" parent="PanelContainer/HBoxContainer" unique_id=1495569673]
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/ResetButton" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="drag_ended" from="PanelContainer/HBoxContainer/SpeedSlider" to="PanelContainer/HBoxContainer/SpeedSlider" method="_on_drag_ended"]
+[connection signal="drag_started" from="PanelContainer/HBoxContainer/SpeedSlider" to="PanelContainer/HBoxContainer/SpeedSlider" method="_on_drag_started"]

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Instruction" format=3 uid="uid://cd0l4003uk5ka"]
+
+[ext_resource type="Script" uid="uid://uel4ryawl3h4" path="res://Scripts/Instruction.gd" id="1_qh0ht"]
+
+[resource]
+script = ExtResource("1_qh0ht")
+name = &"Propp9"
+type = 1
+transitions = PackedStringArray("L", "R", "R", "L")
+state_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.73300546, 0.7330054, 0.7330054, 1), Color(0.38928655, 0.38928664, 0.38928658, 1), Color(0, 0, 0, 1)])
+metadata/_custom_type_script = "uid://uel4ryawl3h4"

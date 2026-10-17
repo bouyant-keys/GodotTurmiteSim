@@ -3,10 +3,10 @@ extends Control
 var validation_message := ""
 
 @onready var instructions_edit: TextEdit = %InstructionsEdit
-@onready var main_panel: Panel = $MainPanel
-@onready var hidden_panel: Panel = $HiddenPanel
+@onready var main_panel: Control = $MainPanel
+@onready var hidden_panel: Control = $HiddenPanel
 
-signal instructions_changed(instructions:String)
+signal instructions_changed(instruction:Instruction)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +24,11 @@ func _on_hide_pressed() ->void:
 func _on_instructions_set() -> void:
 	if validate_syntax(instructions_edit.text):
 		instructions_changed.emit(instructions_edit.text)
+
+func _on_preset_changed(i:Instruction) ->void:
+	instructions_edit.text = i.to_string()
+	instructions_changed.emit(i)
+	_on_hide_pressed()
 
 
 func validate_syntax(text:String) ->bool:

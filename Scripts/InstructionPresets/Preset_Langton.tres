@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Instruction" format=3 uid="uid://dqe4hfkdbve0p"]
+
+[ext_resource type="Script" uid="uid://uel4ryawl3h4" path="res://Scripts/Instruction.gd" id="1_a4ev5"]
+
+[resource]
+script = ExtResource("1_a4ev5")
+name = &"Langton"
+type = 1
+transitions = PackedStringArray("R", "L")
+state_colors = Array[Color]([Color(1, 1, 1, 1), Color(0, 0, 0, 1)])
+metadata/_custom_type_script = "uid://uel4ryawl3h4"

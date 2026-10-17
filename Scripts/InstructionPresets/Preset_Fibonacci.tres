@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Instruction" format=3 uid="uid://di7vnm0wqvmof"]
+
+[ext_resource type="Script" uid="uid://uel4ryawl3h4" path="res://Scripts/Instruction.gd" id="1_cf6fw"]
+
+[resource]
+script = ExtResource("1_cf6fw")
+name = &"Fibbonacci"
+transitions = PackedStringArray("0,w,1,k,L", "0,k,1,k,L", "1,w,1,k,R", "1,k,0,w,Q")
+state_colors = Dictionary[int, Color]({
+0: Color(1, 1, 1, 1),
+1: Color(0, 0, 0, 1)
+})
+metadata/_custom_type_script = "uid://uel4ryawl3h4"

@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://d3getg8sim7dw"]
 
 [ext_resource type="Script" uid="uid://mmiqt5ib6eqc" path="res://Scripts/turmite.gd" id="1_jjgbg"]
+[ext_resource type="Resource" uid="uid://cd0l4003uk5ka" path="res://Scripts/InstructionPresets/Preset_Propp9.tres" id="2_6bp64"]
 [ext_resource type="Texture2D" uid="uid://ci5qrn6qtn1bs" path="res://Textures/board_white.png" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://lq8sgk5ifyxy" path="res://Scripts/speed_slider.gd" id="3_21xkr"]
-[ext_resource type="Texture2D" uid="uid://x46o5e7mdje0" path="res://Textures/GuiVisibilityVisible.svg" id="3_jjvhh"]
-[ext_resource type="Script" uid="uid://cbrqs1b7f4q83" path="res://Scripts/InstructionsPanel.gd" id="3_kry3j"]
-[ext_resource type="Texture2D" uid="uid://c25kctvsq5ptj" path="res://Textures/GuiVisibilityHidden.svg" id="4_kry3j"]
-[ext_resource type="Script" uid="uid://b67hlphvx6fth" path="res://Scripts/color_panel.gd" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://y43ol2qpbnjx" path="res://Scenes/playback_controls.tscn" id="3_6bp64"]
+[ext_resource type="Script" uid="uid://cf0xi8gnyoy5k" path="res://Scripts/turmite_board.gd" id="3_344ge"]
+[ext_resource type="PackedScene" uid="uid://bj3adg8qwcake" path="res://Scenes/instructions_panel.tscn" id="4_6bp64"]
+[ext_resource type="PackedScene" uid="uid://dtongfwjhmume" path="res://Scenes/status_panel.tscn" id="4_ynf5e"]
 
 [node name="Main" type="Node" unique_id=854445980]
 
 [node name="Turmite" type="Node" parent="." unique_id=591910832 node_paths=PackedStringArray("board")]
 script = ExtResource("1_jjgbg")
+starting_instructions = ExtResource("2_6bp64")
 board = NodePath("../Board")
-state_colors = Array[Color]([Color(1, 1, 1, 1), Color(0.68307734, 0.6830774, 0.68307734, 1), Color(0.3665946, 0.3665946, 0.36659458, 1), Color(0, 0, 0, 1)])
 
 [node name="Board" type="TextureRect" parent="." unique_id=1989772780]
 texture_filter = 1
@@ -30,276 +30,33 @@ mouse_filter = 2
 texture = ExtResource("2_bo1nx")
 stretch_mode = 5
 
-[node name="SpeedSlider" type="HSlider" parent="." unique_id=219386602]
+[node name="TurmiteBoard" type="TextureRect" parent="." unique_id=1167557828 node_paths=PackedStringArray("turmite")]
+texture_filter = 1
 anchors_preset = -1
-anchor_left = 0.25
-anchor_top = 1.0
-anchor_right = 0.75
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_right = -4.0
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1.0
-step = 0.05
-value = 1.0
-scrollable = false
-tick_count = 5
-ticks_position = 3
-script = ExtResource("3_21xkr")
-
-[node name="SpeedLabel" type="Label" parent="SpeedSlider" unique_id=1768348954]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.0
-grow_vertical = 2
-text = "Speed: x"
-
-[node name="Panel" type="PanelContainer" parent="." unique_id=1459134778]
-offset_right = 40.0
-offset_bottom = 174.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=141100171]
-layout_mode = 2
-theme_override_constants/margin_left = 2
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 2
-theme_override_constants/margin_bottom = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=704262564]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1802695229]
-layout_mode = 2
-text = "Presets: "
-
-[node name="PresetButton" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1957778776]
-layout_mode = 2
-text = "Ant"
-
-[node name="PresetButton2" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1337770251]
-layout_mode = 2
-text = "LRLR"
-
-[node name="PresetButton3" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1663131007]
-layout_mode = 2
-text = "C"
-
-[node name="PresetButton4" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=651311297]
-layout_mode = 2
-text = "D"
-
-[node name="PresetButton5" type="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1798520490]
-layout_mode = 2
-text = "E"
-
-[node name="InstructionsPanel" type="Control" parent="." unique_id=520638382]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_kry3j")
+texture = ExtResource("2_bo1nx")
+stretch_mode = 5
+script = ExtResource("3_344ge")
+turmite = NodePath("../Turmite")
 
-[node name="MainPanel" type="Panel" parent="InstructionsPanel" unique_id=44303416]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.25
-anchor_bottom = 1.0
+[node name="StatusPanel" parent="." unique_id=1241070155 instance=ExtResource("4_ynf5e")]
+
+[node name="PlaybackControls" parent="." unique_id=2032513786 instance=ExtResource("3_6bp64")]
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="InstructionsPanel/MainPanel" unique_id=2082530016]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+[node name="InstructionsPanel" parent="." unique_id=233951351 instance=ExtResource("4_6bp64")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="InstructionsPanel/MainPanel/MarginContainer" unique_id=302391441]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer" unique_id=39063983]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=362866089]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Instructions:"
-
-[node name="HideButton" type="TextureButton" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=429958806]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 10
-texture_normal = ExtResource("3_jjvhh")
-
-[node name="InstructionsEdit" type="TextEdit" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer" unique_id=904508557]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/font_size = 10
-text = "10w010k0C
-10k010w0X"
-placeholder_text = "10w010k0C0010k010w0X"
-emoji_menu_enabled = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer" unique_id=1380388249]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Button" type="Button" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1400337442]
-layout_mode = 2
-text = "A"
-
-[node name="Button2" type="Button" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=248945507]
-layout_mode = 2
-text = "B"
-
-[node name="Button3" type="Button" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=667805563]
-layout_mode = 2
-text = "C"
-
-[node name="Button4" type="Button" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1591800421]
-layout_mode = 2
-text = "D"
-
-[node name="Button5" type="Button" parent="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1230515003]
-layout_mode = 2
-text = "E"
-
-[node name="HiddenPanel" type="Panel" parent="InstructionsPanel" unique_id=1663281612]
-visible = false
-layout_mode = 0
-offset_left = -4.0
-offset_right = 21.0
-offset_bottom = 21.0
-mouse_filter = 2
-
-[node name="ShowButton" type="TextureButton" parent="InstructionsPanel/HiddenPanel" unique_id=1572159175]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = -2.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 10
-texture_normal = ExtResource("4_kry3j")
-
-[node name="ColorPanel" type="Control" parent="." unique_id=733782207]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("7_6bp64")
-
-[node name="MainPanel" type="Panel" parent="ColorPanel" unique_id=516456795]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -77.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ColorPanel/MainPanel" unique_id=2078264309]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorPanel/MainPanel/MarginContainer" unique_id=2037464550]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer" unique_id=914317249]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="HideButton" type="TextureButton" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1439166260]
-layout_mode = 2
-size_flags_horizontal = 2
-texture_normal = ExtResource("3_jjvhh")
-
-[node name="Label" type="Label" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1690854232]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Colors:"
-
-[node name="ColorContainer" type="VBoxContainer" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer" unique_id=2049614452]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer/ColorContainer" unique_id=1052944753]
-layout_mode = 2
-text = "1"
-color = Color(1, 1, 1, 1)
-
-[node name="ColorPickerButton2" type="ColorPickerButton" parent="ColorPanel/MainPanel/MarginContainer/VBoxContainer/ColorContainer" unique_id=166388691]
-layout_mode = 2
-text = "2"
-color = Color(1, 1, 1, 1)
-
-[node name="HiddenPanel" type="Panel" parent="ColorPanel" unique_id=1419276162]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -21.0
-offset_right = 4.0
-offset_bottom = 21.0
-grow_horizontal = 0
-mouse_filter = 2
-
-[node name="ShowButton" type="TextureButton" parent="ColorPanel/HiddenPanel" unique_id=201218254]
-layout_mode = 1
-anchors_preset = -1
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_bottom = -2.0
-grow_vertical = 2
-size_flags_horizontal = 10
-texture_normal = ExtResource("4_kry3j")
-
-[connection signal="drag_ended" from="SpeedSlider" to="SpeedSlider" method="_on_drag_ended"]
-[connection signal="drag_started" from="SpeedSlider" to="SpeedSlider" method="_on_drag_started"]
-[connection signal="speed_changed" from="SpeedSlider" to="Turmite" method="_on_speed_value_changed"]
-[connection signal="pressed" from="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/HideButton" to="InstructionsPanel" method="_on_hide_pressed"]
-[connection signal="text_set" from="InstructionsPanel/MainPanel/MarginContainer/VBoxContainer/InstructionsEdit" to="InstructionsPanel" method="_on_instructions_set"]
-[connection signal="pressed" from="InstructionsPanel/HiddenPanel/ShowButton" to="InstructionsPanel" method="_on_show_pressed"]
-[connection signal="pressed" from="ColorPanel/MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/HideButton" to="ColorPanel" method="_on_hide_button_pressed"]
-[connection signal="pressed" from="ColorPanel/HiddenPanel/ShowButton" to="ColorPanel" method="_on_show_button_pressed"]
+[connection signal="status_changed" from="Turmite" to="StatusPanel" method="_on_status_changed"]
+[connection signal="steps_changed" from="Turmite" to="StatusPanel" method="_on_steps_changed"]
+[connection signal="pause_turmite" from="PlaybackControls" to="Turmite" method="pause_turmite"]
+[connection signal="reset_turmite" from="PlaybackControls" to="Turmite" method="reset_turmite"]
+[connection signal="speed_changed" from="PlaybackControls" to="Turmite" method="_on_speed_changed"]
+[connection signal="instructions_changed" from="InstructionsPanel" to="Turmite" method="_on_instructions_changed"]

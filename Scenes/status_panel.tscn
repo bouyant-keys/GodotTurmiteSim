@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dtongfwjhmume"]
+
+[ext_resource type="Theme" uid="uid://dovs4fp3bam4w" path="res://ProjectTheme.tres" id="1_0tojk"]
+[ext_resource type="Script" uid="uid://bafpvkifiwrji" path="res://Scripts/status_panel.gd" id="1_pq44r"]
+
+[node name="StatusPanel" type="Control" unique_id=1241070155]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0tojk")
+script = ExtResource("1_pq44r")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1327136073]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_right = 47.0
+offset_bottom = 17.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1441968416]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/HBoxContainer" unique_id=928509149]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=159953892]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Active"
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer" unique_id=738504784]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="StepsLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=558863519]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = " X Steps"
+
+[node name="Spacer2" type="Control" parent="PanelContainer/HBoxContainer" unique_id=782136104]
+layout_mode = 2

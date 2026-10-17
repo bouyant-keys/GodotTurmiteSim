@@ -1,0 +1,191 @@
+[gd_scene format=3 uid="uid://bj3adg8qwcake"]
+
+[ext_resource type="Theme" uid="uid://dovs4fp3bam4w" path="res://ProjectTheme.tres" id="1_5ue33"]
+[ext_resource type="Script" uid="uid://cbrqs1b7f4q83" path="res://Scripts/InstructionsPanel.gd" id="1_6fjpo"]
+[ext_resource type="Texture2D" uid="uid://x46o5e7mdje0" path="res://Textures/GuiVisibilityVisible.svg" id="2_5ue33"]
+[ext_resource type="Texture2D" uid="uid://b7i7pxu705qdv" path="res://Textures/CanvasItem.svg" id="3_6fjpo"]
+[ext_resource type="Script" uid="uid://cg5s0l7i5e5up" path="res://Scripts/preset_button.gd" id="4_bbcx4"]
+[ext_resource type="Resource" uid="uid://dqe4hfkdbve0p" path="res://Scripts/InstructionPresets/Preset_Langton.tres" id="5_sxpg0"]
+[ext_resource type="Resource" uid="uid://cd0l4003uk5ka" path="res://Scripts/InstructionPresets/Preset_Propp9.tres" id="7_a0p6j"]
+[ext_resource type="Resource" uid="uid://b5pwdpldsit6p" path="res://Scripts/InstructionPresets/Preset_Propp12.tres" id="7_sxpg0"]
+[ext_resource type="Resource" uid="uid://btmfh66ow38nj" path="res://Scripts/InstructionPresets/Preset_Propp33.tres" id="8_a0p6j"]
+[ext_resource type="Resource" uid="uid://t5bfy0ivbdnw" path="res://Scripts/InstructionPresets/Preset_Propp39.tres" id="9_85van"]
+
+[node name="InstructionsPanel" type="Control" unique_id=233951351]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_5ue33")
+script = ExtResource("1_6fjpo")
+
+[node name="MainPanel" type="PanelContainer" parent="." unique_id=647988976]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+offset_left = -59.0
+offset_top = -36.0
+offset_right = 59.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel" unique_id=1254139386]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/MarginContainer" unique_id=1726687958]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer" unique_id=1036605669]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InstructionsLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1070882306]
+layout_mode = 2
+text = "Instructions:"
+
+[node name="HideButton" type="TextureButton" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=766489255]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("2_5ue33")
+
+[node name="InstructionsEdit" type="TextEdit" parent="MainPanel/MarginContainer/VBoxContainer" unique_id=1703316990]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_font_sizes/font_size = 10
+placeholder_text = "Enter instructions here..."
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+
+[node name="FormatLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer/InstructionsEdit" unique_id=2015652565]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = " Ant Format: <L/R>, <L/R>, <L/R>, <L/R>, ..."
+clip_text = true
+
+[node name="PresetsLabel" type="Label" parent="MainPanel/MarginContainer/VBoxContainer" unique_id=144190926]
+layout_mode = 2
+text = "Presets:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/MarginContainer/VBoxContainer" unique_id=1868491550]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PresetButton" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=376778623]
+layout_mode = 2
+text = " A "
+script = ExtResource("4_bbcx4")
+preset_instruction = ExtResource("5_sxpg0")
+
+[node name="PresetButton2" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1675134786]
+layout_mode = 2
+text = " B "
+script = ExtResource("4_bbcx4")
+preset_instruction = ExtResource("7_a0p6j")
+
+[node name="PresetButton3" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=459743420]
+layout_mode = 2
+text = " C "
+script = ExtResource("4_bbcx4")
+preset_instruction = ExtResource("7_sxpg0")
+
+[node name="PresetButton4" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=212071021]
+layout_mode = 2
+text = " D "
+script = ExtResource("4_bbcx4")
+preset_instruction = ExtResource("8_a0p6j")
+
+[node name="PresetButton5" type="Button" parent="MainPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1932354650]
+layout_mode = 2
+text = " E "
+script = ExtResource("4_bbcx4")
+preset_instruction = ExtResource("9_85van")
+
+[node name="HiddenPanel" type="Panel" parent="." unique_id=309960548]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_right = 25.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ShowButton" type="TextureButton" parent="HiddenPanel" unique_id=1289636437]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 10
+texture_normal = ExtResource("3_6fjpo")
+
+[node name="TipPanel" type="PanelContainer" parent="." unique_id=1152490253]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -114.0
+offset_right = 133.0
+offset_bottom = 114.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TipPanel" unique_id=867350342]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="TipPanel/VBoxContainer" unique_id=241363876]
+layout_mode = 2
+text = "Tip:"
+
+[node name="Panel" type="Panel" parent="TipPanel/VBoxContainer" unique_id=992948401]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="TipPanel/VBoxContainer/Panel" unique_id=879984720]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "The turmite accepts two types of instructions:
+"
+
+[connection signal="pressed" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer2/HideButton" to="." method="_on_hide_pressed"]
+[connection signal="text_set" from="MainPanel/MarginContainer/VBoxContainer/InstructionsEdit" to="." method="_on_instructions_set"]
+[connection signal="change_preset" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer/PresetButton" to="." method="_on_preset_changed"]
+[connection signal="change_preset" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer/PresetButton2" to="." method="_on_preset_changed"]
+[connection signal="change_preset" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer/PresetButton3" to="." method="_on_preset_changed"]
+[connection signal="change_preset" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer/PresetButton4" to="." method="_on_preset_changed"]
+[connection signal="change_preset" from="MainPanel/MarginContainer/VBoxContainer/HBoxContainer/PresetButton5" to="." method="_on_preset_changed"]
+[connection signal="pressed" from="HiddenPanel/ShowButton" to="." method="_on_show_pressed"]
